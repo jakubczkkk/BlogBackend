@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using BlogBackend.Controllers;
 
 namespace BlogBackend
 {
@@ -32,6 +34,8 @@ namespace BlogBackend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BlogBackend", Version = "v1" });
             });
+            services.AddDbContext<BlogDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("ConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
