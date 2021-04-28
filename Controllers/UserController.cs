@@ -7,7 +7,7 @@ using BlogBackend.Models;
 namespace BlogBackend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/users")]
     public class UserController : ControllerBase
     {
         private BlogDbContext context;
@@ -23,7 +23,7 @@ namespace BlogBackend.Controllers
             return context.Users.ToList();
         }
 
-        [HttpGet("{id}")] 
+        [HttpGet("{username}")] 
         public ActionResult<User> GetUser(Guid id) 
         { 
             var user = context.Users.Find(id); 
